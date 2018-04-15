@@ -85,6 +85,7 @@ static NSString *const iRateAppLookupURLFormat = @"https://itunes.apple.com/%@/l
 
 static NSString *const iRateiOSAppStoreURLScheme = @"itms-apps";
 static NSString *const iRateiOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%@?action=write-review";
+static NSString *const iRateiOSAppStoreURLFormat11 = @"itms-apps://itunes.apple.com/cn/app/id%@?mt=8&action=write-review";
 static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.com/app/id%@?action=write-review";
 
 
@@ -301,7 +302,9 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
 #if TARGET_OS_IPHONE
 
     URLString = iRateiOSAppStoreURLFormat;
-
+    if (@available(iOS 11.0, *)) {
+        URLString = iRateiOSAppStoreURLFormat11;
+    }
 #else
 
     URLString = iRateMacAppStoreURLFormat;
